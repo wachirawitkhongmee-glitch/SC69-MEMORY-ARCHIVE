@@ -1,0 +1,487 @@
+/* =====================================================
+   MEMORY MIRROR SC69 — Memory Wall (รูปภาพแขวนบนเชือก)
+   Realistic Polaroid frames hanging on twine with wooden clothespins
+===================================================== */
+
+.memory-wall-section {
+    width: 100%;
+    margin: 50px 0 30px;
+    position: relative;
+}
+
+.memory-wall-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.memory-wall-title {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--burgundy-bright);
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.memory-wall-subtitle {
+    font-family: var(--font-handwriting);
+    font-size: 1.15rem;
+    color: var(--sepia-brown);
+    margin-top: 4px;
+}
+
+/* Jute Rope / Twine Line across the wall */
+.twine-line-stage {
+    position: relative;
+    width: 100%;
+    padding: 30px 10px 40px;
+}
+
+/* Realistic Jute Twine Rope */
+.twine-rope-strand {
+    position: absolute;
+    top: 36px;
+    left: -20px;
+    right: -20px;
+    height: 6px;
+    background: repeating-linear-gradient(45deg, #A88656, #8F6E3F 3px, #BFA070 6px);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.4),
+        0 1px 2px rgba(255, 255, 255, 0.2) inset;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+/* Photo Gallery Grid hanging from the rope */
+.polaroid-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px 28px;
+    position: relative;
+    z-index: 10;
+    padding-top: 15px;
+}
+
+/* Individual Polaroid Item */
+.polaroid-item {
+    position: relative;
+    width: 230px;
+    background: #FAF8F2;
+    padding: 12px 12px 20px;
+    border-radius: 3px;
+    box-shadow: 
+        0 12px 28px rgba(15, 8, 4, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s ease, z-index 0.1s;
+    transform-origin: top center;
+    animation: polaroidSway 6s ease-in-out infinite;
+}
+
+/* Wooden Clothespin (ไม้หนีบผ้าไม้) */
+.clothespin {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 38px;
+    background: linear-gradient(to right, #DEBA88 0%, #B88E56 50%, #8E6835 100%);
+    border-radius: 2px;
+    box-shadow: 
+        2px 4px 8px rgba(0, 0, 0, 0.45),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    z-index: 15;
+}
+
+/* Metal spring band in middle of wooden clip */
+.clothespin::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -2px;
+    right: -2px;
+    height: 6px;
+    background: linear-gradient(to right, #9C9C9C, #D8D8D8 50%, #686868);
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Split line of the wooden clip jaws */
+.clothespin::after {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 7px;
+    width: 2px;
+    height: 16px;
+    background: #5A3F1F;
+}
+
+/* Photo Thumbnail Container */
+.polaroid-photo-frame {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #E8E2D5;
+    position: relative;
+    border: 1px solid #E0D7C5;
+}
+
+.polaroid-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: contrast(1.03) brightness(0.98);
+}
+
+/* Caption and Date under the Polaroid */
+.polaroid-caption {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.polaroid-caption-text {
+    font-family: var(--font-handwriting);
+    font-size: 1.05rem;
+    color: var(--dark-coffee);
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.polaroid-caption-date {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: var(--sepia-brown);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Washi Tape / Decorative Paper Tape */
+.washi-tape-strip {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    width: 60px;
+    height: 20px;
+    background: rgba(220, 190, 150, 0.65);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transform: rotate(6deg);
+    pointer-events: none;
+    border-left: 2px dashed rgba(255, 255, 255, 0.4);
+    border-right: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+/* Random natural tilt angles and staggered sway animations */
+.polaroid-item:nth-child(1) {
+    transform: rotate(-3deg);
+    animation-delay: 0s;
+}
+
+.polaroid-item:nth-child(2) {
+    transform: rotate(3.5deg);
+    animation-delay: 1.2s;
+}
+
+.polaroid-item:nth-child(3) {
+    transform: rotate(-1.5deg);
+    animation-delay: 2.4s;
+}
+
+.polaroid-item:nth-child(4) {
+    transform: rotate(4deg);
+    animation-delay: 3.6s;
+}
+
+.polaroid-item:nth-child(5) {
+    transform: rotate(-2.5deg);
+    animation-delay: 1.8s;
+}
+
+.polaroid-item:nth-child(6) {
+    transform: rotate(2deg);
+    animation-delay: 0.8s;
+}
+
+@keyframes polaroidSway {
+    0%, 100% {
+        transform: rotate(var(--current-rot, -2deg));
+    }
+    50% {
+        transform: rotate(calc(var(--current-rot, -2deg) + 2.5deg));
+    }
+}
+
+/* Hover effect: lifts, enlarges, straightens */
+.polaroid-item:hover {
+    transform: translateY(-8px) scale(1.08) rotate(0deg) !important;
+    box-shadow: 
+        0 24px 45px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 30 !important;
+    animation-play-state: paused;
+}
+
+.polaroid-item:hover .polaroid-photo-frame img {
+    transform: scale(1.06);
+}
+
+/* ==========================================
+   PHOTO LIGHTBOX MODAL
+========================================== */
+.photo-lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(73, 51, 35, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fadeInModal 0.3s ease forwards;
+}
+
+.photo-lightbox-modal.active {
+    display: flex;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox-content-card {
+    background: #FFFDF8;
+    padding: 16px 16px 24px;
+    border-radius: 6px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(73, 51, 35, 0.35);
+    border: 2px solid var(--antique-gold);
+    position: relative;
+}
+
+.lightbox-img-wrapper {
+    width: 100%;
+    max-height: 65vh;
+    overflow: hidden;
+    background: #EADCC2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.lightbox-img-wrapper img {
+    max-width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+}
+
+.lightbox-info {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.lightbox-caption {
+    font-family: var(--font-handwriting);
+    font-size: 1.25rem;
+    color: var(--dark-brown);
+}
+
+.lightbox-date {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--soft-brown);
+    margin-top: 4px;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    color: #FFF;
+    border: 2px solid var(--antique-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(143, 48, 56, 0.35);
+    transition: var(--transition-smooth);
+}
+
+.lightbox-close-btn:hover {
+    transform: scale(1.1);
+    background: #7B1B22;
+}
+
+/* ==========================================
+   SHARED SC69 PHOTO GALLERY (เลื่อนได้)
+========================================== */
+.shared-gallery-section {
+    width: 100%;
+    margin: 45px 0 30px;
+    position: relative;
+}
+
+.shared-gallery-scroll-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.shared-gallery-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 16px 8px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #BD9659 #EADCC2;
+    -webkit-overflow-scrolling: touch;
+}
+
+.shared-gallery-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.shared-gallery-track::-webkit-scrollbar-track {
+    background: #EADCC2;
+    border-radius: 3px;
+}
+
+.shared-gallery-track::-webkit-scrollbar-thumb {
+    background: #BD9659;
+    border-radius: 3px;
+}
+
+.shared-gallery-track::-webkit-scrollbar-thumb:hover {
+    background: #98734F;
+}
+
+.shared-gallery-frame {
+    flex: 0 0 auto;
+    width: 320px;
+    height: 220px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FFFDF8;
+    border: 2.5px solid var(--antique-gold);
+    box-shadow:
+        0 8px 22px rgba(73, 51, 35, 0.14),
+        0 2px 6px rgba(73, 51, 35, 0.08);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.shared-gallery-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 70%, rgba(73, 51, 35, 0.25) 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.shared-gallery-frame:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+        0 14px 32px rgba(73, 51, 35, 0.22),
+        0 0 16px rgba(189, 150, 89, 0.25);
+    border-color: var(--burgundy);
+    z-index: 10;
+}
+
+.shared-gallery-frame:hover::after {
+    opacity: 0.15;
+}
+
+.shared-gallery-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: contrast(1.02) brightness(0.99);
+}
+
+.shared-gallery-frame:hover img {
+    transform: scale(1.06);
+}
+
+/* Scroll Arrow Buttons */
+.gallery-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 253, 248, 0.95);
+    border: 1.5px solid var(--antique-gold);
+    color: var(--dark-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(73, 51, 35, 0.16);
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(4px);
+}
+
+.gallery-scroll-btn:hover {
+    background: var(--burgundy);
+    color: #FFF;
+    border-color: var(--burgundy);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(143, 48, 56, 0.3);
+}
+
+.gallery-scroll-left {
+    left: -6px;
+}
+
+.gallery-scroll-right {
+    right: -6px;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .shared-gallery-frame {
+        width: 260px;
+        height: 180px;
+    }
+
+    .gallery-scroll-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .gallery-scroll-left {
+        left: 0;
+    }
+
+    .gallery-scroll-right {
+        right: 0;
+    }
+}

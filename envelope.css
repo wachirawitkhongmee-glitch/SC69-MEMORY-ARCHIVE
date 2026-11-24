@@ -1,0 +1,629 @@
+/* =====================================================
+   MEMORY MIRROR SC69 — 3D Vintage Envelope & Wax Seal
+   Theme: Bright Vintage Letter + Soft Antique Scrapbook
+   Color Palette:
+     - Background:   #EADCC2
+     - Light Cream:  #F5EBD8
+     - Antique Paper: #E8D5B5
+     - Warm Beige:   #D8BD96
+     - Soft Brown:   #98734F
+     - Antique Gold: #BD9659
+     - Burgundy:     #8F3038
+     - Dark Brown:   #493323
+===================================================== */
+
+/* Landing Desk Section */
+.landing-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 0 50px;
+    width: 100%;
+}
+
+.hero-subheading {
+    font-family: var(--font-handwriting);
+    font-size: 1.4rem;
+    color: var(--burgundy);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(189, 150, 89, 0.25);
+    margin-bottom: 8px;
+}
+
+.hero-tagline {
+    font-family: var(--font-script);
+    font-size: 1.35rem;
+    color: var(--soft-brown);
+    font-style: italic;
+    margin-bottom: 35px;
+}
+
+/* 3D Envelope Wrapper */
+.envelope-stage {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 540px;
+    height: 360px;
+    position: relative;
+    margin: 10px auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 480px;
+    height: 310px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.6s ease;
+    animation: envelopeGentleBreathe 6s ease-in-out infinite;
+}
+
+@keyframes envelopeGentleBreathe {
+    0%, 100% {
+        transform: translateY(0px) rotate(-0.5deg);
+        filter: drop-shadow(0 14px 25px rgba(73, 51, 35, 0.20));
+    }
+    50% {
+        transform: translateY(-8px) rotate(0.5deg);
+        filter: drop-shadow(0 20px 32px rgba(73, 51, 35, 0.28));
+    }
+}
+
+/* Base Envelope Body — Bright Warm Cream & Antique Paper */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: 
+        radial-gradient(ellipse at 50% 50%, #FAF5EB 0%, #F0DFBF 50%, #E2CEAA 85%, #D4BD93 100%),
+        repeating-linear-gradient(45deg, rgba(189, 150, 89, 0.05) 0px, rgba(189, 150, 89, 0.05) 2px, transparent 2px, transparent 8px);
+    border-radius: 8px;
+    box-shadow: 
+        inset 0 0 35px rgba(189, 150, 89, 0.3),
+        0 18px 45px rgba(73, 51, 35, 0.22),
+        0 4px 12px rgba(73, 51, 35, 0.1);
+    border: 1.5px solid #C4A87C;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Internal Letter Paper (Sliding out on Open — Ivory Cream Paper) */
+.envelope-letter-paper {
+    position: absolute;
+    top: 15px;
+    left: 5%;
+    width: 90%;
+    height: 85%;
+    background: 
+        radial-gradient(circle at 75% 15%, rgba(245, 235, 216, 0.6) 0%, transparent 45%),
+        linear-gradient(180deg, #FFFDF8 0%, #FAF3E5 60%, #F0E2C8 100%);
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 25px rgba(189, 150, 89, 0.2),
+        0 8px 20px rgba(73, 51, 35, 0.15);
+    z-index: 2;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #D8BD96;
+    border-top: 4px solid #BD9659;
+    background-image: 
+        repeating-linear-gradient(transparent, transparent 22px, rgba(189, 150, 89, 0.18) 23px);
+}
+
+.mini-letter-header {
+    font-family: var(--font-handwriting);
+    font-size: 1.18rem;
+    color: var(--burgundy);
+    font-weight: 700;
+}
+
+.mini-letter-body {
+    font-family: var(--font-handwriting);
+    font-size: 1.02rem;
+    color: var(--dark-brown);
+    line-height: 1.8;
+}
+
+.mini-letter-sign {
+    font-family: var(--font-script);
+    font-size: 1.3rem;
+    color: var(--burgundy);
+    text-align: right;
+    font-weight: 700;
+}
+
+/* Envelope Pocket (Front Triangles — Soft Cream Antique Folds) */
+.envelope-pocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.envelope-pocket-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 155px solid transparent;
+    border-bottom: 155px solid transparent;
+    border-left: 240px solid #E8D5B5;
+    filter: drop-shadow(3px 0 8px rgba(73, 51, 35, 0.14));
+}
+
+.envelope-pocket-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 155px solid transparent;
+    border-bottom: 155px solid transparent;
+    border-right: 240px solid #DFCCAA;
+    filter: drop-shadow(-3px 0 8px rgba(73, 51, 35, 0.14));
+}
+
+.envelope-pocket-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 240px solid transparent;
+    border-right: 240px solid transparent;
+    border-bottom: 175px solid #D6BE97;
+    filter: drop-shadow(0 -4px 10px rgba(73, 51, 35, 0.16));
+}
+
+/* Envelope Flap (Top Folding Triangle) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 240px solid transparent;
+    border-right: 240px solid transparent;
+    border-top: 170px solid #E0C9A3;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    z-index: 5;
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.3s;
+    filter: drop-shadow(0 6px 14px rgba(73, 51, 35, 0.20));
+}
+
+/* Twine Jute Rope Decoration */
+.envelope-twine {
+    position: absolute;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.twine-horizontal {
+    top: 50%;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: 5px;
+    background: repeating-linear-gradient(45deg, #C5A578, #AC8B5E 3px, #D8BF96 6px);
+    box-shadow: 0 2px 5px rgba(73, 51, 35, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+.twine-vertical {
+    top: -5px;
+    left: 36%;
+    height: calc(100% + 10px);
+    width: 5px;
+    background: repeating-linear-gradient(45deg, #C5A578, #AC8B5E 3px, #D8BF96 6px);
+    box-shadow: 2px 0 5px rgba(73, 51, 35, 0.22), inset 1px 0 1px rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+/* Dried Lavender / Flower Sprig */
+.envelope-flower {
+    position: absolute;
+    top: 35%;
+    left: 34%;
+    transform: translate(-30%, -30%) rotate(-25deg);
+    z-index: 7;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(73, 51, 35, 0.25));
+}
+
+.flower-stem {
+    width: 3px;
+    height: 90px;
+    background: #87926B;
+    border-radius: 2px;
+}
+
+.flower-buds {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bud {
+    width: 14px;
+    height: 9px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #A886A3, #7E5F7A);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Vintage Postage Stamp (Top Right) */
+.vintage-stamp {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 76px;
+    height: 92px;
+    background: #FFFDF9;
+    border: 3px solid #E8D5B5;
+    border-radius: 2px;
+    box-shadow: 0 4px 10px rgba(73, 51, 35, 0.15);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 4px;
+    transform: rotate(3deg);
+    overflow: hidden;
+}
+
+/* Serrated stamp edges effect */
+.vintage-stamp::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: radial-gradient(circle, transparent 2px, #DEC8A2 2.5px);
+    background-size: 8px 8px;
+    z-index: -1;
+}
+
+.stamp-inner-border {
+    border: 1px dashed var(--antique-gold);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2px;
+}
+
+.stamp-scenic {
+    font-size: 26px;
+    filter: sepia(0.3);
+}
+
+.stamp-value {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--burgundy);
+    letter-spacing: 0.5px;
+}
+
+.stamp-text {
+    font-family: var(--font-body);
+    font-size: 8px;
+    color: var(--soft-brown);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Wavy Postmark Cancellation */
+.postmark-wavy {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    width: 110px;
+    height: 70px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.65;
+    transform: rotate(-10deg);
+}
+
+/* Envelope Addressee & Author Label */
+.envelope-front-label {
+    position: absolute;
+    bottom: 22px;
+    left: 28px;
+    z-index: 4;
+    text-align: left;
+    background: rgba(255, 253, 248, 0.88);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border-left: 3px solid var(--burgundy);
+    box-shadow: 0 2px 8px rgba(73, 51, 35, 0.12);
+}
+
+.label-title {
+    font-family: var(--font-script);
+    font-size: 1.15rem;
+    color: var(--dark-brown);
+    margin-bottom: 2px;
+}
+
+.label-from {
+    font-family: var(--font-handwriting);
+    font-size: 1rem;
+    color: var(--burgundy);
+    font-weight: 700;
+}
+
+/* Burgundy Sealing Wax */
+.wax-seal-wrapper {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.wax-seal-wrapper:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.wax-seal {
+    width: 82px;
+    height: 82px;
+    border-radius: 49% 51% 52% 48% / 51% 49% 52% 48%;
+    background: 
+        radial-gradient(circle at 32% 28%, #D4424B 0%, #A82E37 36%, #7B1B22 75%, #560F14 100%);
+    box-shadow: 
+        0 8px 22px rgba(110, 34, 40, 0.40),
+        inset 0 3px 5px rgba(255, 255, 255, 0.60),
+        inset 0 -3px 6px rgba(50, 8, 12, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid #6E181E;
+}
+
+/* Organic melted wax rim */
+.wax-seal::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    right: -7px;
+    bottom: -7px;
+    border-radius: 47% 53% 49% 51% / 52% 48% 53% 47%;
+    background: radial-gradient(circle at 38% 36%, #9C2730 0%, #75171D 60%, #4D0A0F 100%);
+    z-index: -1;
+    box-shadow: 0 4px 12px rgba(110, 34, 40, 0.3);
+}
+
+.seal-emblem {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 240, 210, 0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFF3DD;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.seal-crest {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.seal-sub {
+    font-family: var(--font-script);
+    font-size: 14px;
+    color: #FFF3DD;
+    margin-top: 2px;
+}
+
+/* OPEN LETTER Button (Warm Ivory-Cream Tag) */
+.open-letter-tag-container {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 12;
+}
+
+.open-tag-string {
+    width: 2px;
+    height: 35px;
+    background: repeating-linear-gradient(to bottom, #C5A578, #9E7C4F 4px);
+    box-shadow: 1px 0 2px rgba(73, 51, 35, 0.2);
+}
+
+.btn-open-letter {
+    position: relative;
+    padding: 15px 46px 15px 54px;
+    background: linear-gradient(135deg, #FFFDF8 0%, #F5EBD8 50%, #E8D5B5 100%);
+    color: var(--dark-brown);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1.5px solid var(--antique-gold);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 
+        0 8px 24px rgba(73, 51, 35, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Vintage eyelet grommet hole on paper tag */
+.btn-open-letter::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #EADCC2;
+    border: 2.5px solid var(--antique-gold);
+    box-shadow: inset 0 1px 2px rgba(73, 51, 35, 0.2);
+}
+
+.btn-open-letter:hover {
+    background: linear-gradient(135deg, #FFFDF9 0%, #FAF3E3 50%, #EEDBB9 100%);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 14px 30px rgba(73, 51, 35, 0.22),
+        0 0 15px rgba(189, 150, 89, 0.3);
+    color: var(--burgundy);
+    border-color: var(--burgundy);
+}
+
+.btn-open-letter:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(73, 51, 35, 0.15);
+}
+
+/* Animation trigger classes */
+.envelope-wrapper.is-opening .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-wrapper.is-opening .wax-seal-wrapper {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.4);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.envelope-wrapper.is-opening .envelope-letter-paper {
+    transform: translateY(-110px);
+    box-shadow: 0 16px 35px rgba(73, 51, 35, 0.25);
+    z-index: 6;
+}
+
+/* Wax Shatter Particle Effect */
+.wax-particle {
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    background: #8F3038;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2.1rem;
+    }
+    
+    .envelope-stage {
+        height: 280px;
+    }
+
+    .envelope-wrapper {
+        width: 320px;
+        height: 220px;
+    }
+
+    .envelope-pocket-left,
+    .envelope-pocket-right {
+        border-top-width: 110px;
+        border-bottom-width: 110px;
+    }
+
+    .envelope-pocket-left {
+        border-left-width: 160px;
+    }
+
+    .envelope-pocket-right {
+        border-right-width: 160px;
+    }
+
+    .envelope-pocket-bottom {
+        border-left-width: 160px;
+        border-right-width: 160px;
+        border-bottom-width: 125px;
+    }
+
+    .envelope-flap {
+        border-left-width: 160px;
+        border-right-width: 160px;
+        border-top-width: 125px;
+    }
+
+    .wax-seal-wrapper {
+        top: 110px;
+    }
+
+    .wax-seal {
+        width: 64px;
+        height: 64px;
+    }
+
+    .seal-emblem {
+        width: 44px;
+        height: 44px;
+    }
+
+    .seal-crest {
+        font-size: 12px;
+    }
+
+    .vintage-stamp {
+        width: 58px;
+        height: 72px;
+        top: 12px;
+        right: 14px;
+    }
+
+    .btn-open-letter {
+        padding: 12px 34px 12px 42px;
+        font-size: 1rem;
+    }
+}
