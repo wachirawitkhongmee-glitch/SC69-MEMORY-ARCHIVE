@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Memory Mirror SC69 — ระบบจัดการจดหมายต้นปาล์ม</title>
+    <meta name="description" content="ระบบจัดการหลังบ้าน Memory Mirror SC69 สำหรับต้นปาล์ม">
+    <meta name="theme-color" content="#1A0F0A">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Charm:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Itim&family=Mali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/letter.css">
+    <link rel="stylesheet" href="css/scrapbook.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- =====================================================
+         1. LOGIN GATE MODAL (การยืนยันตัวตน)
+    ===================================================== -->
+    <div id="adminLoginSection" class="admin-wrapper" style="display: none;">
+        <div class="admin-auth-card">
+            <div class="auth-seal">TP</div>
+            <h2 class="auth-title">Memory Mirror Archive</h2>
+            <p class="auth-subtitle">ระบบจัดการจดหมายความทรงจำ สำหรับ ต้นปาล์ม</p>
+
+            <form id="loginForm" class="registry-form">
+                <div class="form-group">
+                    <label for="adminPassword" style="color: var(--dark-coffee);">รหัสผ่านผู้ดูแลระบบ</label>
+                    <input type="password" id="adminPassword" class="form-control" placeholder="กรอกรหัสผ่าน..." required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-find-letter" style="width: 100%;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span>เข้าสู่ระบบหลังบ้าน</span>
+                </button>
+                <div id="loginError" style="color: #9E2630; font-size: 0.88rem; margin-top: 10px; display: none;">
+                    รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="index.html" class="btn-vintage btn-vintage-outline" style="font-size: 0.85rem;">
+                        ← กลับสู่หน้าหลัก
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         2. MAIN ADMIN DASHBOARD
+    ===================================================== -->
+    <div id="adminDashboardSection" class="admin-wrapper" style="display: none;">
+
+        <!-- Top Navigation -->
+        <nav class="admin-navbar">
+            <div class="admin-brand">
+                <div class="brand-emblem">TP</div>
+                <div class="admin-title-group">
+                    <h2>Memory Mirror SC69 — Admin Console</h2>
+                    <span>ผู้เขียนระบบกลาง: <strong>ต้นปาล์ม ♡</strong></span>
+                </div>
+            </div>
+
+            <div class="admin-nav-actions">
+                <a href="index.html" class="btn-vintage btn-vintage-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>เปิดดูเว็บไซต์</span>
+                </a>
+                <button class="btn-vintage" id="btnAddNewLetter">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>เขียนจดหมายใหม่</span>
+                </button>
+                <button class="btn-vintage btn-vintage-outline" id="btnLogout" title="ออกจากระบบ">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>ออก</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Metrics Cards -->
+        <div class="admin-stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">✉️</div>
+                <div class="stat-info">
+                    <h3 id="statTotalLetters">0</h3>
+                    <p>จดหมายทั้งหมดในระบบ</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🌟</div>
+                <div class="stat-info">
+                    <h3 id="statPublishedLetters">0</h3>
+                    <p>จดหมายที่เผยแพร่แล้ว</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📷</div>
+                <div class="stat-info">
+                    <h3 id="statTotalPhotos">0</h3>
+                    <p>รูปภาพบนเชือกความทรงจำ</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔒</div>
+                <div class="stat-info">
+                    <h3 id="statSecretLetters">0</h3>
+                    <p>จดหมายลับพิเศษ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Panel -->
+        <div class="admin-panel-card">
+            <div class="panel-header-bar">
+                <div class="panel-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>รายชื่อผู้รับจดหมาย SC69</span>
+                </div>
+
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <div class="panel-search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="adminSearchInput" placeholder="ค้นหาชื่อ, ชื่อเล่น, หรือฝ่ายงาน...">
+                    </div>
+
+                    <button class="btn-action-icon" id="btnExportData" title="สำรองข้อมูลเป็นไฟล์ JSON">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>สำรอง JSON</span>
+                    </button>
+
+                    <button class="btn-action-icon" id="btnImportData" title="นำเข้าข้อมูลจาก JSON">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span>นำเข้า JSON</span>
+                    </button>
+                    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+                    <button class="btn-action-icon" id="btnResetDefaults" title="คืนค่าข้อมูลเริ่มต้น SC69" style="color: #FFB74D;">
+                        <span>รีเซ็ตเริ่มต้น</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Letters Table -->
+            <div class="table-responsive">
+                <table class="vintage-table">
+                    <thead>
+                        <tr>
+                            <th>ผู้รับ & ชื่อเล่น</th>
+                            <th>ฝ่าย / ตำแหน่ง</th>
+                            <th>รูปภาพ</th>
+                            <th>จดหมายลับ</th>
+                            <th>สถานะ</th>
+                            <th>การจัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lettersTableBody">
+                        <!-- Injected by js/admin.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         3. ADD / EDIT LETTER MODAL FORM
+    ===================================================== -->
+    <div class="admin-modal" id="letterFormModal" role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalFormTitle">เขียนจดหมายความทรงจำใหม่</h3>
+                <button class="btn-action-icon" id="btnCloseFormModal" style="border-radius: 50%; width: 32px; height: 32px; padding: 0; justify-content: center;">✕</button>
+            </div>
+
+            <form id="letterEditForm" class="modal-body">
+                <input type="hidden" id="editLetterId">
+
+                <!-- Fixed Author Banner -->
+                <div class="author-fixed-box">
+                    <strong>ผู้เขียนจดหมาย: ต้นปาล์ม ♡</strong> (ระบบกำหนดเป็นต้นปาล์มอัตโนมัติทุกฉบับ ไม่ต้องกรอกซ้ำ)
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editRecipientName">ชื่อจริง - นามสกุล ผู้รับ *</label>
+                        <input type="text" id="editRecipientName" class="form-control" placeholder="เช่น นายณัฐกิตติ์ เบ็ญจมินทร์" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNickname">ชื่อเล่น *</label>
+                        <input type="text" id="editNickname" class="form-control" placeholder="เช่น กันต์" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editAliases">ชื่อเรียกอื่น / คำค้นหา (คั่นด้วยจุลภาค , )</label>
+                        <input type="text" id="editAliases" class="form-control" placeholder="เช่น กันต์, Gun, ปธ, ประธาน, Kunt">
+                    </div>
+                    <div class="form-group">
+                        <label for="editRole">ตำแหน่ง / ฝ่ายงาน</label>
+                        <input type="text" id="editRole" class="form-control" placeholder="เช่น ประธานนักเรียน สภานักเรียน บ.ด.๒ รุ่น 69">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editDateStamp">วันที่ประทับตราจดหมาย</label>
+                        <input type="text" id="editDateStamp" class="form-control" placeholder="เช่น 24 พฤศจิกายน 2569">
+                    </div>
+                    <div class="form-group" style="justify-content: flex-end;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; padding-bottom: 8px;">
+                            <input type="checkbox" id="editIsPublished" checked style="width: 18px; height: 18px; accent-color: #7C1D24;">
+                            <span>เผยแพร่จดหมายฉบับนี้ทันที</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editMessage">ข้อความอวยพรและกำลังใจเฉพาะบุคคล (เนื้อหาจดหมายหลัก) *</label>
+                    <textarea id="editMessage" class="form-control" placeholder="เขียนข้อความจากหัวใจถึงเพื่อน..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="editSecretLetter">ข้อความในจดหมายลับ (Secret Letter - ซ่อนในซองเล็ก)</label>
+                    <textarea id="editSecretLetter" class="form-control" style="min-height: 80px;" placeholder="ความในใจหรือความลับพิเศษที่อยากบอกเฉพาะบุคคลนี้..."></textarea>
+                </div>
+
+                <!-- Memory Wall Photo Uploader -->
+                <div class="form-group">
+                    <label>รูปภาพแขวนบนเชือกความทรงจำ (Memory Wall)</label>
+                    <div class="photo-manager-box">
+                        <label class="photo-upload-trigger">
+                            <input type="file" id="photoFileInput" accept="image/*" multiple style="display: none;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--burgundy-bright); margin-bottom: 6px;">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <span style="font-size: 0.92rem; font-weight: 600; color: var(--sepia-brown);">คลิกเพื่อเลือกรูปภาพจากเครื่อง</span>
+                            <span style="font-size: 0.78rem; color: #888;">(รองรับการเลือกหลายรูปพร้อมกัน JPG, PNG, WEBP)</span>
+                        </label>
+
+                        <div class="admin-photos-preview-list" id="formPhotosList">
+                            <!-- Dynamic preview items -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-vintage btn-vintage-outline" id="btnCancelEdit">ยกเลิก</button>
+                    <button type="submit" class="btn-find-letter" style="padding: 10px 24px;">บันทึกจดหมาย</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         4. LIVE PREVIEW MODAL
+    ===================================================== -->
+    <div class="admin-modal" id="previewModal" role="dialog" aria-modal="true">
+        <div class="modal-dialog" style="max-width: 900px; background: transparent; border: none; box-shadow: none;">
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                <button class="btn-vintage btn-vintage-outline" id="btnClosePreview" style="background: rgba(0,0,0,0.8); color: #FFF;">
+                    ✕ ปิดตัวอย่าง
+                </button>
+            </div>
+            <div id="previewParchmentContainer">
+                <!-- Injected live letter preview matching index.html exactly -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

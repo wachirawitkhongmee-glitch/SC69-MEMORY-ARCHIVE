@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Mirror SC69 | สมุดกระจกแห่งความทรงจำ — โดย ต้นปาล์ม ♡</title>
+    <meta name="description"
+        content="Memory Mirror SC69 — สมุดกระจกแห่งความทรงจำ ส่งจดหมาย คำอวยพร และความทรงจำดี ๆ ถึงเพื่อนสภานักเรียน บ.ด.๒ รุ่น 69 โดย ต้นปาล์ม ♡">
+    <meta name="theme-color" content="#190E0A">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Charm:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Itim&family=Mali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/envelope.css">
+    <link rel="stylesheet" href="css/letter.css">
+    <link rel="stylesheet" href="css/scrapbook.css">
+    <link rel="stylesheet" href="css/player.css">
+</head>
+
+<body>
+    <!-- Floating Golden Dust Particles Canvas -->
+    <canvas id="dustCanvas"></canvas>
+
+    <!-- Antique Vignette Ambient Lighting -->
+    <div class="vintage-vignette"></div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+
+        <!-- Top Header Navigation -->
+        <header class="top-header">
+            <a href="#" class="brand-badge" id="brandHomeLink" aria-label="กลับหน้าแรก">
+                <div class="brand-emblem" id="brandEmblem" title="Memory Mirror SC69">TP</div>
+                <div class="brand-text">
+                    <h1>Memory Mirror SC69</h1>
+                    <span>สมุดกระจกแห่งความทรงจำ • จาก ต้นปาล์ม ♡</span>
+                </div>
+            </a>
+        </header>
+
+        <!-- =====================================================
+             1. LANDING DESK SECTION (หน้าแรก - โต๊ะเขียนจดหมายเก่า)
+        ===================================================== -->
+        <section class="view-section active" id="landingSection">
+            <div class="landing-hero">
+                <div class="hero-subheading">มีจดหมายฉบับหนึ่งส่งถึงคุณ...</div>
+                <h2 class="hero-title">Memory Mirror SC69</h2>
+                <div class="hero-tagline">"A little letter, a lifetime memory."</div>
+
+                <!-- 3D Vintage Envelope Stage -->
+                <div class="envelope-stage">
+                    <div class="envelope-wrapper" id="envelopeWrapper">
+                        <!-- Envelope Back Layer -->
+                        <div class="envelope-back"></div>
+
+                        <!-- Letter Inside sliding out -->
+                        <div class="envelope-letter-paper">
+                            <div class="mini-letter-header">Dear Special Friend,</div>
+                            <div class="mini-letter-body">
+                                มีเรื่องราวมากมายและความทรงจำอันแสนอบอุ่น<br>
+                                บันทึกไว้ในสมุดกระจกฉบับนี้...
+                            </div>
+                            <div class="mini-letter-sign">จาก ต้นปาล์ม ♡</div>
+                        </div>
+
+                        <!-- Envelope Pocket (Sides and Bottom Fold) -->
+                        <div class="envelope-pocket">
+                            <div class="envelope-pocket-left"></div>
+                            <div class="envelope-pocket-right"></div>
+                            <div class="envelope-pocket-bottom"></div>
+                        </div>
+
+                        <!-- Top Folding Flap in 3D -->
+                        <div class="envelope-flap"></div>
+
+                        <!-- Jute Twine Rope Decoration -->
+                        <div class="envelope-twine twine-horizontal"></div>
+                        <div class="envelope-twine twine-vertical"></div>
+
+                        <!-- Dried Lavender Sprig -->
+                        <div class="envelope-flower">
+                            <div class="flower-stem"></div>
+                            <div class="flower-buds">
+                                <div class="bud"></div>
+                                <div class="bud"></div>
+                                <div class="bud"></div>
+                                <div class="bud"></div>
+                            </div>
+                        </div>
+
+                        <!-- Vintage Postage Stamp -->
+                        <div class="vintage-stamp">
+                            <div class="stamp-inner-border">
+                                <div class="stamp-value">SC 69</div>
+                                <div class="stamp-scenic">🏛️</div>
+                                <div class="stamp-text">POSTAGE</div>
+                            </div>
+                        </div>
+
+                        <!-- Wavy Cancellation Postmark -->
+                        <svg class="postmark-wavy" viewBox="0 0 120 60">
+                            <path d="M 0 15 Q 15 5, 30 15 T 60 15 T 90 15 T 120 15" fill="none" stroke="#66101F" stroke-width="1.8"/>
+                            <path d="M 0 30 Q 15 20, 30 30 T 60 30 T 90 30 T 120 30" fill="none" stroke="#66101F" stroke-width="1.8"/>
+                            <path d="M 0 45 Q 15 35, 30 45 T 60 45 T 90 45 T 120 45" fill="none" stroke="#66101F" stroke-width="1.8"/>
+                        </svg>
+
+                        <!-- Addressee & Author Label -->
+                        <div class="envelope-front-label">
+                            <div class="label-title">To: Someone Special</div>
+                            <div class="label-from">From: ต้นปาล์ม ♡</div>
+                        </div>
+
+                        <!-- Deep Burgundy Wax Seal (Clickable) -->
+                        <div class="wax-seal-wrapper" id="waxSealBtn" title="คลิกเพื่อเปิดจดหมาย">
+                            <div class="wax-seal">
+                                <div class="seal-emblem">
+                                    <div class="seal-crest">SC69</div>
+                                    <div class="seal-sub">♡</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Letter Tag Button -->
+                <div class="open-letter-tag-container">
+                    <div class="open-tag-string"></div>
+                    <button class="btn-open-letter" id="openLetterBtn" aria-label="เปิดอ่านจดหมาย">
+                        <span>OPEN LETTER</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             2. RECIPIENT REGISTRY CARD (ระบบระบุชื่อผู้รับ)
+        ===================================================== -->
+        <section class="view-section" id="registrySection">
+            <div class="registry-card-stage">
+                <div class="registry-card">
+                    <!-- Approved Stamp for successful lookup -->
+                    <div class="approved-stamp" id="approvedStamp">
+                        APPROVED
+                        <span>SC69 MEMORY ARCHIVE</span>
+                    </div>
+
+                    <div class="registry-header">
+                        <span class="registry-badge">Postal Registry Archive</span>
+                        <h2 class="registry-title">จดหมายฉบับนี้ส่งถึงใครนะ?</h2>
+                        <p class="registry-desc">พิมพ์ชื่อจริง ชื่อเล่น หรือชื่อเรียกของคุณเพื่อค้นหาจดหมายส่วนตัวจากต้นปาล์ม</p>
+                    </div>
+
+                    <div class="registry-form">
+                        <div class="input-envelope-field">
+                            <label for="recipientInput">ชื่อผู้รับ หรือ ชื่อเล่น</label>
+                            <svg class="input-icon-quill" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                                <path d="M2 2l7.586 7.586"></path>
+                                <circle cx="11" cy="11" r="2"></circle>
+                            </svg>
+                            <input type="text" id="recipientInput" class="recipient-input" placeholder="พิมพ์ชื่อเล่น เช่น ออโต้, นะดา, โบนัส, พิม, ไอคิว, ชู่, บอส, ครูบุช..." autocomplete="off">
+                            <!-- Instant Autocomplete Dropdown -->
+                            <div class="input-autocomplete-dropdown" id="recipientAutocomplete"></div>
+                        </div>
+
+                        <button type="button" class="btn-find-letter" id="findLetterBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span>FIND MY LETTER</span>
+                        </button>
+
+                        <!-- Error Message -->
+                        <div class="registry-error-box" id="registryErrorBox"></div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             3. PERSONAL LETTER & MEMORY WALL VIEW (หน้าจดหมายส่วนตัว)
+        ===================================================== -->
+        <section class="view-section" id="letterSection">
+            <div class="letter-view-container">
+                <!-- Action bar top -->
+                <div style="width: 100%; display: flex; justify-content: flex-start; margin-bottom: 16px;">
+                    <button class="btn-vintage btn-vintage-outline" id="reSearchBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>ค้นหาจดหมายฉบับอื่น</span>
+                    </button>
+                </div>
+
+                <!-- Aged Parchment Letter -->
+                <article class="parchment-letter">
+                    <!-- Letter Header Meta & Stamps -->
+                    <div class="letter-header-meta">
+                        <div>
+                            <h2 class="recipient-salutation" id="letterSalutation">Dear Friend,</h2>
+                            <span class="recipient-role-badge" id="letterRoleBadge">สภานักเรียน บ.ด.๒ รุ่น 69</span>
+                        </div>
+
+                        <div class="letter-postmark-stamp">
+                            <div class="circular-postmark">
+                                <span>BANGKOK</span>
+                                <strong>SC69</strong>
+                                <span id="letterDateStamp">24 พ.ย. 2569</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progressive Handwriting Letter Body -->
+                    <div class="letter-body-content" id="letterBodyContent">
+                        กำลังเขียนความทรงจำ...
+                    </div>
+
+                    <!-- Secret Letter Section (จดหมายลับ) -->
+                    <div class="secret-letter-section">
+                        <button type="button" class="secret-envelope-toggle" id="secretLetterToggle">
+                            <span class="secret-toggle-icon">✉️</span>
+                            <span class="secret-toggle-text">จดหมายลับจากต้นปาล์ม (คลิกเพื่อเปิดอ่าน)</span>
+                        </button>
+
+                        <div class="secret-letter-card" id="secretLetterCard">
+                            <div class="secret-card-header">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span>ข้อความพิเศษเฉพาะคุณ • จาก ต้นปาล์ม</span>
+                            </div>
+                            <div class="secret-card-text" id="secretCardText">
+                                ความลับจะถูกเปิดเผยที่นี่...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Author Signoff (Fixed to ต้นปาล์ม) -->
+                    <div class="letter-signoff">
+                        <div class="signoff-closing">ด้วยความหวังดีและความทรงจำดี ๆ</div>
+                        <div class="signoff-author">จาก ต้นปาล์ม ♡</div>
+                    </div>
+                </article>
+
+
+
+                <!-- =====================================================
+                     SC69 SHARED PHOTO GALLERY (รูปภาพรวม สภา 69 — เลื่อนได้)
+                ===================================================== -->
+                <div class="shared-gallery-section">
+                    <div class="memory-wall-header">
+                        <h3 class="memory-wall-title">
+                            <span>ภาพบันทึกความทรงจำ SC69</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </h3>
+                        <p class="memory-wall-subtitle">เลื่อนเพื่อดูภาพกิจกรรมของพวกเรา (คลิกเพื่อดูภาพใหญ่)</p>
+                    </div>
+
+                    <div class="shared-gallery-scroll-wrapper">
+                        <button class="gallery-scroll-btn gallery-scroll-left" id="galleryScrollLeft" aria-label="เลื่อนซ้าย">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <div class="shared-gallery-track" id="sharedGalleryTrack">
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group1.jpg" data-caption="กิจกรรมบดินทรฟิงเกอร์ โรงเรียนนวมินทราชินูทิศ บดินทรเดชา">
+                                <img src="assets/images/photos/sc69-group1.jpg" alt="SC69 Group 1" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group2.jpg" data-caption="หน้าโรงเรียนบดินทรเดชา (สิงห์ สิงหเสนี) ๒">
+                                <img src="assets/images/photos/sc69-group2.jpg" alt="SC69 Group 2" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group3.jpg" data-caption="กิจกรรมหน้าโรงเรียน บ.ด.๒">
+                                <img src="assets/images/photos/sc69-group3.jpg" alt="SC69 Group 3" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group4.jpg" data-caption="ถือธงชาติ สภานักเรียน SC69">
+                                <img src="assets/images/photos/sc69-group4.jpg" alt="SC69 Group 4" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group5.jpg" data-caption="พิธีไหว้ครู">
+                                <img src="assets/images/photos/sc69-group5.jpg" alt="SC69 Group 5" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group6.jpg" data-caption="ถ่ายรูปรวมหน้าเวที บ.ด.๒">
+                                <img src="assets/images/photos/sc69-group6.jpg" alt="SC69 Group 6" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group7.jpg" data-caption="ค่ายอบรมผู้นำนักเรียน">
+                                <img src="assets/images/photos/sc69-group7.jpg" alt="SC69 Group 7" loading="lazy">
+                            </div>
+                            <div class="shared-gallery-frame" data-src="assets/images/photos/sc69-group8.jpg" data-caption="กิจกรรมสภานักเรียน SC69">
+                                <img src="assets/images/photos/sc69-group8.jpg" alt="SC69 Group 8" loading="lazy">
+                            </div>
+                        </div>
+                        <button class="gallery-scroll-btn gallery-scroll-right" id="galleryScrollRight" aria-label="เลื่อนขวา">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Letter Closing Action Bar -->
+                <div class="letter-action-bar">
+                    <button class="btn-close-letter" id="closeLetterBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>เก็บจดหมายฉบับนี้ไว้ในความทรงจำ</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- =====================================================
+         PHOTO LIGHTBOX MODAL
+    ===================================================== -->
+    <div class="photo-lightbox-modal" id="photoLightbox" role="dialog" aria-modal="true" aria-label="ขยายภาพถ่าย">
+        <div class="lightbox-content-card">
+            <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="ปิดภาพขยาย">✕</button>
+            <div class="lightbox-img-wrapper">
+                <img id="lightboxImg" src="" alt="ขยายรูปถ่าย">
+            </div>
+            <div class="lightbox-info">
+                <div class="lightbox-caption" id="lightboxCaption"></div>
+                <div class="lightbox-date" id="lightboxDate"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotice">
+        Keep this memory close to your heart.
+    </div>
+
+    <!-- =====================================================
+         VINTAGE MUSIC PLAYER WIDGET (หัวใจผูกกัน - Acoustic)
+    ===================================================== -->
+    <aside class="vintage-music-player" id="musicPlayer" aria-label="เครื่องเล่นเพลง">
+        <!-- Vinyl Record Disc (Spins while playing) -->
+        <div class="vinyl-disc-container" id="vinylDisc" title="คลิกเพื่อเล่น/พักเพลง">
+            <div class="vinyl-disc"></div>
+        </div>
+
+        <!-- Meta Track Info -->
+        <div class="player-meta">
+            <div class="track-title">หัวใจผูกกัน - Acoustic</div>
+            <div class="track-status">
+                <span class="equalizer-bars">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </span>
+                <span>Soundtrack</span>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="player-controls">
+            <button class="btn-player-action" id="btnPlayPause" aria-label="เล่นเพลง">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </button>
+            <button class="btn-player-action" id="btnMute" aria-label="ปิดเสียง">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- File hint tooltip -->
+        <div class="player-file-hint" id="playerFileHint">
+            กำลังเล่น: หัวใจผูกกัน - Acoustic
+        </div>
+    </aside>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/dust.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
